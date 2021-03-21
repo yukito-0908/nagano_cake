@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :order_details
-  devise_for :orders
-  devise_for :cart_items
-  devise_for :genres
-  devise_for :items
   devise_for :admins
-  devise_for :addresses
   devise_for :customers
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  namespace :public do
+     resources :homes,only:[:index]
+  end
+  namespace :admin do
+    get  'sign_in' => 'sessions#new'
+    resources :items, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+    resources :genres, only: [:index, :create,:edit, :update]
+    root  'homes#top'
+  end
+   root 'public/homes#top'
 end

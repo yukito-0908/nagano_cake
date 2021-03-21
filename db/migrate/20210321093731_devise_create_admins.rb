@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class DeviseCreateAdmins < ActiveRecord::Migration[5.0]
+class DeviseCreateAdmins < ActiveRecord::Migration[5.2]
   def change
     create_table :admins do |t|
       t.string :email,              null: false, default: ""
@@ -9,8 +7,8 @@ class DeviseCreateAdmins < ActiveRecord::Migration[5.0]
       t.integer :admin_id
       t.datetime :reset_password_sent_at
       t.datetime :remember_created_at
-      t.timestamps :created_at
-      t.timestamps :updated_at
+      t.timestamp :created_at
+      t.timestamp :updated_at
       t.timestamps null: false
     end
     add_index :admins, :email,                unique: true

@@ -1,27 +1,45 @@
  <div class="container">
    <div class="row">
      <div class="col">
-      <h1>商品新規登録</h1>
-        <%= form_with model: @post_image, local:true do |f| %>
-          <h4>商品画像</h4>
-          <%= f.attachment_field :image %>
-          <h4>商品名</h4>
-          <%= f.text_field :shop_name %>
-          <h4>商品説明</h4>
-          <%= f.text_area :caption %>
-          <p>ジャンル</p>
-          <%= f.hidden_field :genre_id %>
-          <p>税抜価格</p>
-          <%= f.text_field :price %>
-          <div class="check_box_tag">
-            <%= check_box_tag :sample1 %>
-            <%= label_tag :sample1, "販売ステータス" %>
-             
-            <%= check_box_tag :sample2 %>
-            <%= label_tag :sample2, "販売停止中" %>
-          </div>
-          <%= f.submit '新規登録' %>
-        <% end %>
+      <div class="new-product">
+        <div class="new-product-title m-4 bg-light text-center" style="width:20%;">
+          <h4>商品新規登録</h4>
+        </div>
+          <%= form_for (@item),url: admin_items_path do |f| %>
+            <div class="new-product-all text-center w-50 mx-auto m-4">
+              <div class="new-product-img d-flex w-80">
+                <p class="pr-5 pt-2">商品画像</p>
+                <div class="product-img pl-5 pt-2"><%= f.attachment_field :image %></div>
+              </div>
+                <div class="new-product-name d-flex text-center">
+                  <p class="pr-5 text-center">商品名　</p>
+                  <div class="product-name pl-5"><%= f.text_field :name,:placeholder=>"商品名" %></div>
+                </div>
+                  <div class="new-product-introduction d-flex">
+                    <p class="pr-5">商品説明</p>
+                    <div class="product-introduction pl-5"><%= f.text_area :introduction,:placeholder=>"ここに説明文を記述します。",:class=>"introduction-img" %></div>
+                  </div>
+                    <div class="new-product-price d-flex pr-5">
+                      <p class="pr-5">税抜価格</p>
+                      <div class="product-price pl-5"><%= f.text_field :price,:placeholder=>"1000" %>円</div>
+                    </div>
+                      <div class="new-product-genre d-flex">
+                        <p class="pr-5">ジャンル</p>
+                        <div class="pl-5 product-genre"><%= f.collection_select(:genre_id, @genres, :id, :name) %></div>
+                      </div>
+                         <div class="field d-flex">
+                            <p class="pr-5">販売ステータス</p>
+                              <div class="field-title">
+                                <%= f.radio_button :is_active,:true %>
+                                <%= f.label :is_active, "販売中", {style: "display: inline-block;"} %>
+                                <%= f.radio_button :is_active,:false %>
+                                <%= f.label :is_active, "販売停止中", {style: "display: inline-block;"} %>
+                              </div>
+                          </div>
+                           <div class="new-product-submit m-3"><%= f.submit '新規登録',:class=>"text-white bg-success border border-white rounded px-4 py-2" %></div>
+                </div>
+              <% end %>
+        </div>
       </div>
     </div>
   </div>

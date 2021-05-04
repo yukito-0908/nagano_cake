@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="cart_item-list">
+        <div class="cart-item-title d-flex justify-content-between m-4">
+          <h4>ショッピングカート</h4>
+          <div class="cart-item-destroy_all"><%= link_to 'カートを空にする',public_cart_items_destroy_all_path, method: :delete,class: "btn btn-danger" %></div>
+        </div>
+        <table class="table text-center">
+          <thead>
+            <tr>
+              <th class="border border-dark">商品名</th>
+              <th class="border border-dark">単価(税込)</th>
+              <th class="border border-dark">数量</th>
+              <th class="border border-dark">小計</th>
+              <th class="border border-dark"></th>
+            </tr>
+          </thead>
+           <% @cart_items.each do |cart_item| %>
+            <tbody>
+              <tr>
+                <td class="d-flex border border-dark" style="height:70px;">
+                  <div class="table-title"><%= attachment_image_tag cart_item.item,:image,fallback: "no_image.jpg", size:'80x50'  %></div>
+                  <p class="m-3"><%= cart_item.item.name %></p>
+                </td>
+                <td class="border border-dark m-3"><%= cart_item.item.price %></td>
+                <%= form_for (cart_item),url: public_cart_item_path(cart_item.id) do |f| %>
+                  <td class="border border-dark m-3"><%= f.number_field(:amount, in: 1..100) %>
+                      <%= f.submit '変更' %>
+                  </td>
+                <% end %>
+                <td class="border border-dark m-3">
+                  <%= cart_item.item.price * cart_item.amount %>
+                </td>
+                <td class="border border-dark"><%= link_to '排除する', public_cart_item_path(cart_item.id), method: :delete,class: "btn btn-danger" %></td>
+              </tr>
+            </tbody>
+           <% end %>
+          </div>
+        </table>
+          <div class="cart_item-shopping d-flex justify-content-between ">
+            <div class="cart-item-title"><%=link_to '買い物を続ける', public_items_path,class: "btn btn-primary" %></div>
+              <div class="cart_item-list d-flex">
+                <table class="table">
+                <thead class="border border-dark">
+                  <tr>
+                    <th class="bg-light border border-dark">合計金額</th>
+                  <th class="border border-dark">
+                    <% @sum = 0 %>
+                    <% @cart_items.each do |cart_item| %>
+                    <%  @sum += cart_item.item.price * cart_item.amount  %>
+                    <% end %>
+                    <%= @sum %>
+                  </th>
+                </tr>
+                </thead>
+              </table>
+              </div>
+          </div>
+          <div class="cart-item-information text-center m-2">
+            <%= link_to '情報入力に進む',  new_public_order_path,class: "btn btn-success"  %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

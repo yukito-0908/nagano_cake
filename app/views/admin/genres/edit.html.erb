@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= form_with model: @genre, url: admin_genre_path(@genre) do |f| %>
+        <div class="genre-edit-title p-4 mx-4">
+          <h4 class="text-center  bg-light" style="width:20%;">ジャンル編集</h4>
+        </div>
+          <div class="genre-edit-list d-inline-flex">
+            <div class="genre-edit-ganre p-4">ジャンル名</div>
+            <div class="genre-edit-name p-4"><%= f.text_field :name %></div>
+            <div class="genre-edit-submit p-4"><%= f.submit '変更を保存' %></div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="edit-title">
+        <h4><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h4>
+      </div>
+      <%= form_for (@customer),url:  admin_customer_path do |f| %>
+         <div class="customer-list d-flex">
+            <div class="customer-left">
+              <div class="customer-item">
+                <p class="m-4">会員ID</p>
+                <p class="m-4">名前</p>
+                <p class="m-4">フリガナ</p>
+                <p class="m-4">郵便便番号(ハイフンなし)</p>
+                <p class="m-4">住所</p>
+                <p class="m-4">電話番号(ハイフンなし)</p>
+                <p class="m-4">メールアドレス</p>
+                <p class="m-4">会員ステータス</p>
+              </div>
+            </div>
+              <div class="customer-right">
+                  <p class="customer-id mt-4"><%= @customer.id %></p>
+                <div class="customer-name d-flex">
+                  <p>(姓)　<%= f.text_field :last_name %></p>
+                  <p>(名)　<%= f.text_field :first_name %></p>
+                </div>
+                  <div class="customer-name2 d-flex">
+                    <p>(セイ) <%= f.text_field :last_name_kana %></p>
+                    <p>(メイ) <%= f.text_field :first_name_kana %></p>
+                  </div>
+                  <div class="customer-postal_code ml-4 mt-2 mb-3">
+                    <%= f.text_field :postal_code %>
+                  </div>
+                    <div class="customer-street-address ml-4 mt-3 mb-3">
+                      <%= f.text_field :address %>
+                    </div>
+                      <div class="customer-phone mt-4 mb-3 ml-4">
+                        <%= f.telephone_field :telephone_number %>
+                      </div>
+                        <div class="customer-email ml-4 mt-3 mb-3">
+                          <%= f.text_field :email %>
+                        </div>
+                          <div class="customer-delete d-flex ml-4">
+                            <div class="customer-ture f-flex m-2">
+                              <%= f.radio_button :is_active, :true %>
+                              <%= f.label :is_active, "有効"  %>
+                            </div>
+                            <div class="customer-false f-flex m-2">
+                              <%= f.radio_button :is_active, :false %>
+                              <%= f.label :is_active, "退会" %>
+                            </div>
+                          </div>
+                </div>
+            </div>
+            <div class="customer-submit">
+              <%= f.submit '変更を保存' ,:class=>"bg-success text-white border border-light",:style=>"padding:5px 5px" %>
+            </div>
+      <% end %>
+    </div>
+  </div>
+</div>

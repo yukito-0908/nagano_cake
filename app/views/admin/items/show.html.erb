@@ -1,0 +1,33 @@
+<div class="container">
+  <h4 class="text-center bg-light m-4" style="width:15%;">商品詳細</h4>
+    <div class="row pt-4" style="display:block;">
+        <div class="new-product-show d-flex">
+            <div class="product-show-item p-4">
+              <%= attachment_image_tag @item,:image, fallback: "no_image.jpg", size:'200x200' %>
+            </div>
+                <div class="product-show-name p-4">
+                  <p class="p-2">商品名</p>
+                  <p class="p-2">商品説明</p>
+                  <p class="p-2">ジャンル</p>
+                  <p class="p-2",style="font-size:10px;">税込価格<br/>(税抜価格)</p>
+                  <p>販売ステータス</p>
+                </div>
+                  <div class="product-show-introduction p-4"> 
+                    <div><p class="p-2"><%= @item.name %></p></div>
+                    <div><p class="p-2"><%= @item.introduction %></p></div>
+                    <div><p class="p-2"><%= @item.genre.name %></p></div>
+                    <div><p class="p-2"><%= @item.price %></p></div>
+                    <div>
+                      <% if @item.is_active == true %>
+                        <p class="pt-4 pl-2 text-success">販売中</p>
+                      <% else %>
+                        <p class="pt-4 pl-2 text-success">販売停止中</p>
+                      <% end %>
+                    </div>
+                  </div>
+        </div>
+          <div class="product-show-edit w-50" style="margin-left:33%; margin-top:20px;">
+            <%= link_to "編集",edit_admin_item_path,class:"text-center bg-success text-light px-4 py-2 rounded-lg" %>
+          </div>
+    </div>
+</div>

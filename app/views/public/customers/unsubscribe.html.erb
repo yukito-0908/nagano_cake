@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="unsubscribe-title text-center w-80 mx-auto">
+        <h4>本当に退会しますか</h4>
+        <p>退会すると、会員登録情報や<br/>
+        これまでの購⼊履歴が閲覧できなくなります。<br/>
+        退会する場合は、「退会する」をクリックしてください。</p>
+          <div class="unsubscribe-link">
+            <div class="unsubscribe-red d-flex justify-content-center">
+              <div class="unsubscribe-primary m-2"><%= link_to '退会しない', public_customers_mypage_path,:class=>"bg-primary text-white border border-light",:style=>"padding:5px 5px;" %></div>
+              <div class="unsubscribe-danger m-2"><%= link_to '退会する',  public_customers_withdraw_path,:class=>"bg-danger text-white border border-light",:style=>"padding:5px 5px;" %></div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

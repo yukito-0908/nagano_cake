@@ -1,0 +1,59 @@
+ <div class="container">
+   <div class="row">
+     <div class="row">
+      <div class="edit-title">
+        <h4><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h4>
+      </div>
+         <div class="customer-list d-flex">
+            <div class="customer-left">
+              <div class="customer-item">
+                <p class="m-4">名前</p>
+                <p class="m-4">フリガナ</p>
+                <p class="m-4">メールアドレス</p>
+                <p class="m-4">郵便便番号(ハイフンなし)</p>
+                <p class="m-4">住所</p>
+                <p class="m-4">電話番号(ハイフンなし)</p>
+                <p class="m-4">メールアドレス</p>
+                <p class="m-4">会員ステータス</p>
+              </div>
+            </div>
+              <div class="customer-right">
+                <div class="customer-name  m-4">
+                  <%= @customer.last_name + @customer.first_name %>
+                </div>
+                  <div class="customer-name2  m-4">
+                    <%= @customer.last_name_kana + @customer.first_name_kana %>
+                  </div>
+                <div class="customer-email m-4">
+                  <%= @customer.email %>
+                </div>
+                  <div class="customer-postal_code m-4">
+                    <%= @customer.postal_code %>
+                  </div>
+                    <div class="customer-street-address m-4">
+                      <%= @customer.address %>
+                    </div>
+                      <div class="customer-phone m-4">
+                        <%= @customer.telephone_number %>
+                      </div>
+                        <div class="customer-email m-4">
+                          <%= @customer.email %>
+                        </div>
+                          <div class="customer-delete  m-4">
+                            <% if @customer.is_active == true %>
+                           <td class="text-success">有効</td>
+                            <% else %>
+                            <td class="text-success">退会</td>
+                            <% end %>
+                          </div>
+                </div>
+            </div>
+            <div class="customer-submit d-flex">
+              <div class="customer-edit"><%= link_to '編集する',edit_admin_customer_path(@customer) %></div>
+
+<%= link_to "button1",admin_order_path(button: "1") %>
+<%= link_to "button2",admin_order_path(button: "2") %>
+            </div>
+     </div>
+   </div>
+ </div>

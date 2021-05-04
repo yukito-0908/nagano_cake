@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="order-title address-title item-title m-4 text-center" style="width:20%;">
+        <h4 class="bg-light">注文履歴一覧</h4>
+      </div>
+      <% @sum = 0 %>
+      <% @order_items.each do |order_item| %>
+        <%  @sum += order_item.buy_price * order_item.quantity %>
+       <% end %>
+          <div class="customer-order d-flex justify-content-around">
+            <div class="table-title col-4">
+              <p>注文情報</p>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <td class="border border-dark bg-light">注文日</td>
+                    <td class="border border-dark"><%= @order.updated_at.strftime('%m月%d日 %H:%M') %></td>
+                  </tr>
+                    <tr>
+                      <td class="border border-dark bg-light">配送先</td>
+                      <td class="border border-dark"><%= @order.delivery_postal_code %><br/>
+                          <%= @order.delivery_address %><br/>
+                          <%= @order.delivery_name %></td>
+                    </tr>
+                      <tr>
+                        <td class="border border-dark bg-light">支払い方法</td>
+                        <td class="border border-dark"><%= @order.method_of_payment %></td>
+                      </tr>
+                        <tr>
+                          <td class="border border-dark bg-light">ステータス</td>
+                          <td class="border border-dark"><%= @deleted %></td>
+                        </tr>
+                </thead>
+              </table>
+            </div>
+            <div class="table-title col-4 m-4">
+              <p>注文情報</p>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <td class="border border-dark bg-light">商品合計</td>
+                    <td class="border border-dark"><%= @sum %></td>
+                  </tr>
+                    <tr>
+                      <td class="border border-dark bg-light">配送料</td>
+                      <td class="border border-dark"><%= @order.shiopping_cost %></td>
+                    </tr>
+                      <tr>
+                        <td class="border border-dark bg-light">ご請求料</td>
+                        <td class="border border-dark"><%= @order.shiopping_cost + @sum %></td>
+                      </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+          <div class="table-title">
+            <p>注文内容</p>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="border border-dark bg-light">商品</th>
+                <th class="border border-dark bg-light">単価</th>
+                <th class="border border-dark bg-light">個数</th>
+                <th class="border border-dark bg-light">小計</th>
+              </tr>
+            </thead>
+              <tbody>
+                <% @order_items.each do |order_item| %>
+                  <tr>
+                    <td class="border border-dark"><%= order_item.item.name %></td>
+                    <td class="border border-dark"><%= order_item.item.price %></td>
+                    <td class="border border-dark"><%= order_item.quantity %></td>
+                    <td class="border border-dark"><%= order_item.buy_price * order_item.quantity %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+          </table>
+    </div>
+  </div>
+</div>

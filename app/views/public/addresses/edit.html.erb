@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class-"col" style="width:100%;">
+      <%= form_for (@address),url: public_address_path do |f| %>
+        <div class="address-title item-title m-4 text-center" style="width:15%;">
+          <h4 class="bg-light">配送先編集</h4>
+        </div>
+          <div class="address-all d-flex justify-content-around m-4">
+            <div class="address-item">
+              <p class="m-1">郵便番号(ハイフン無し)</p>
+              <p class="mt-4 ml-4">住所</p>
+              <p class="ml-4">宛名</p>
+            </div>
+              <div class="address-list">
+                <p><%= f.text_field :postal_code %></p>
+                <p><%= f.text_field :address,:style=> "padding-right:300px;"  %></p>
+                <p><%= f.text_field :name %></p>
+              </div>
+                <div class="address-edit-submit" style="margin-top:10%;">
+                  <%= f.submit '変更内容を保存',:class=>"text-white bg-success border border-white rounded px-4 py-1" %>
+                </div>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>

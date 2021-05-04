@@ -1,0 +1,32 @@
+ <div class="container">
+   <div class="row m-4">
+     <div class="w-75 mx-auto">
+      <h4 class="bg-light text-center m-4" style="width:12%;">ログイン</h4>
+        <div class="rogin-title">
+          <p class="bg-light w-50 text-center">会員の方はこちらからログイン</p>
+        </div>
+        <div class="login-item text-center">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="login-list m-4">
+              <div class="login-item d-flex mt-4">
+                <p>メールアドレス</p>
+                <div class="login-email"><%= f.email_field :email, autofocus: true, autocomplete: "email",:class=>"ml-4",:style=>"padding-right:150px;" %></div>
+              </div>
+              <div class="loguin-list d-flex mct-4">
+                <p>パスワード　　</p>
+                <div class="login-password"><%= f.password_field :password, autocomplete: "current-password",:class=>"ml-4",:style=>"padding-right:150px;" %></div>
+              </div>
+            </div>
+              <div class="actions m-3">
+                <%= f.submit "ログイン",:class=>"text-center bg-primary text-light border border-light", :style=>"padding-right:40px; padding-left:40px;" %>
+              </div>
+          <% end %>
+    </div>
+      <div class="login2-title bg-light w-25 text-center">
+        <p>会員登録がお済みでない方</p>
+      </div>
+        <div class="login2-item text-center p-2">
+          <p><%= link_to "こちら",new_customer_registration_path,:class=>"mx-2" %>から新規登録を行なってください</p>
+        </div>
+  </div>
+</div>

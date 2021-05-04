@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="customer-title text-center" style="width:15%; margin-left:10%; margin-bottom:3%;">
+        <p class="bg-light">マイページ</p>
+      </div>
+        <div class="customer-item d-flex m-2">
+          <h4>登録情報</h4>
+          <div class="address-success ml-4"><%= link_to "編集する", edit_public_customer_path(@customer),:class=> "text-white bg-success  rounded px-4 py-2" %></div>
+        </div>
+        <table class="table" style="width:60%;">
+          <tbody>
+          <tr>
+            <td class="border border-dark bg-light">氏名</td>
+            <td class="border border-dark"><%= current_customer.last_name %><%= current_customer.first_name %></td>
+          </tr>
+          <tr>
+            <td class="border border-dark bg-light">カナ</td>
+            <td class="border border-dark"><%= current_customer.last_name_kana %><%= current_customer.first_name_kana %></td>
+          </tr>
+          <tr>
+            <td class="border border-dark bg-light">郵便番号</td>
+            <td class="border border-dark"><%= current_customer.postal_code %></td>
+          </tr>
+          <tr>
+            <td class="border border-dark bg-light">住所</td>
+            <td class="border border-dark"><%= current_customer.address %></td>
+          </tr>
+          <tr>
+            <td class="border border-dark bg-light">電話番号</td>
+            <td class="border border-dark"><%= current_customer.telephone_number %></td>
+          </tr>
+          <tr>
+            <td class="border border-dark bg-light">メールアドレス</td>
+            <td class="border border-dark"><%= current_customer.email %></td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="link-all mt-4">
+          <div class="customer-last d-flex">
+            <p class="font-weight-bold">配送先　</h4>
+             <div class="customer-link ml-4"><%= link_to '一覧を戻る', public_addresses_path,:class=>"text-white bg-primary  rounded px-4 py-1"  %></div>
+          </div>
+            <div class="customer-last2 d-flex">
+              <p class="font-weight-bold">注文履歴</h4>
+              <div class="customer-link ml-4"><%= link_to '一覧を見る',  public_orders_path,:class=>"text-white bg-primary  rounded px-4 py-1"  %></div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

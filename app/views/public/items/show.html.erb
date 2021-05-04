@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="product-show-title">
+        <div class="top-item"><%= attachment_image_tag @item,:image, fallback: "no_image.jpg", size:'200x200' %></div>
+         <p class=""><%= @item.name %></p>
+         <p class=""><%= @item.introduction %></p>
+         <p class=""><span>¥<%= @item.price %></span>(税込)</p>
+      </div>
+        <div class="product-show-list">
+          <%= form_for (@cart_item),url: public_cart_items_path do |f| %>
+            <%= f.number_field(:amount, in: 1..100) %>
+            <%= f.hidden_field :item_id, :value =>  @item.id %>
+            <%= f.hidden_field :customer_id, :value => current_customer.id %>
+            <%= f.submit "カートに入れる" %>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>

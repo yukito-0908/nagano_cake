@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="public-item-all">
+        <div class="public-item-title d-flex flex-wrap m-3">
+          <h4>商品一覧</h4>
+          <p class="pt-1 pl-2">(全×件)</p>
+        </div>
+          <div class="public-item-index d-flex flex-wrap">
+            <% @items.each do |item| %>
+              <div class="top-list m-2 w-20">
+                <div class="top-item"><%= attachment_image_tag item,:image, fallback: "no_image.jpg", size:'250x250' %></div>
+                    <div class="mt-2">
+                      <%= link_to item.name,public_item_path(item.id) %>
+                  </div>
+                <p>¥<%= item.price %></p>
+              </div>
+            <% end %>
+          </div>
+      </div>
+        <%= paginate @items %>
+    </div>
+  </div>
+</div>

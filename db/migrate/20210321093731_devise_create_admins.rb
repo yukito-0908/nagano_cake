@@ -4,11 +4,10 @@ class DeviseCreateAdmins < ActiveRecord::Migration[5.2]
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
       t.string   :reset_password_token
-      t.integer :admin_id
       t.datetime :reset_password_sent_at
       t.datetime :remember_created_at
-      t.timestamp :created_at
-      t.timestamp :updated_at
+      t.timestamp :created_at,:default => Time.now
+      t.timestamp :updated_at,:default => Time.now
       t.timestamps null: false
     end
     add_index :admins, :email,                unique: true

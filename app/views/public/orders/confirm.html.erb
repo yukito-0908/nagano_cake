@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="confirm-title new-product-title m-4 bg-light text-center" style="width:20%;">
+        <h4>注文情報確認</h4>
+      </div>
+        <div class="table-title d-flex">
+          <table class="table col-7 mr-4">
+            <thead class="bg-light">
+              <tr>
+                <th class="border border-dark">商品名</th>
+                <th class="border border-dark">単価(税込)</th>
+                <th class="border border-dark">数量</th>
+                <th class="border border-dark">小計</th>
+              </tr>
+            </thead>
+              <% @sum2 = 0 %>
+              <% @cart_items.each do |cart_item| %>
+            <tbody>
+                <tr>
+                  <td class="d-flex border border-dark" style="height:70px;">
+                    <div class="table-title"><%= attachment_image_tag cart_item.item,:image,fallback: "no_image.jpg", size:'80x50'  %></div>
+                    <p class="m-3"><%= cart_item.item.name %></p>
+                  </td>
+                  <td class="border border-dark"><%= cart_item.item.price %></td>
+                  <td class="border border-dark"><%= cart_item.amount %></td>
+                  <td class="border border-dark">
+                    <% @sum = 0 %>
+                    <%  @sum += cart_item.item.price * cart_item.amount  %>
+                    <%  @sum2 += cart_item.item.price * cart_item.amount  %>
+                    <%= @sum %>
+                  </td>
+                </tr>
+            </tbody>
+             <% end %>
+          </table>
+            <div class="table-item col-3">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <td class="bg-light  border border-dark">送料</td>
+                    <td class="border border-dark"><%= @order.shiopping_cost %></td>
+                  </tr>
+                </thead>
+                  <tbody>
+                    <tr>
+                      <td class="bg-light  border border-dark">商品合計</td>
+                      <td class=" border border-dark"><%= @sum2 %></td>
+                    </tr>
+                      <tr>
+                        <td class="bg-light  border border-dark">請求金額</td>
+                        <td class=" border border-dark"><%= @order.shiopping_cost + @sum2 %></td>
+                      </tr>
+                  </tbody>
+              </table>
+            </div>
+        </div>
+           <div class="confirm-item d-flex mt-4">
+            <h4>支払い方法</h4>
+            <p class="ml-4 mt-2"><%= @method_of_payment %></p>
+          </div>
+            <div class="confirm-address d-flex">
+              <h4>お届け先</h4>
+              <p class="ml-4 mt-2"><%= @order.delivery_postal_code + " " + @order.delivery_address %><br/>
+              <%= @order.delivery_name %></p>
+            </div>
+    </div>
+     <%= form_with model: @order, url:  public_orders_path, local: true do |f| %>
+        <%= f.hidden_field :delivery_postal_code, :value => @order.delivery_postal_code %>
+        <%= f.hidden_field :delivery_address, :value => @order.delivery_address %>
+        <%= f.hidden_field :delivery_postal_code, :value => @order.delivery_postal_code %>
+        <%= f.hidden_field :delivery_name, :value => @order.delivery_name %>
+        <%= f.hidden_field :method_of_payment, :value => @method_of_payment %>
+        <%= f.hidden_field :updated_at, :value => Time.now %>
+        <%= f.submit '注文を確定する' %>
+      <% end %>
+  </div>
+</div>

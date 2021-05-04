@@ -9,9 +9,32 @@
   </head>
 
   <body>
+    <header class="d-flex justify-content-between">
+      <div class="header-logo">
+        <h2 class="px-4 py-2 m-4  border border-dark">LOGO</h2>
+      </div>
+      <div class="header-item d-flex mt-2">
+      <% if customer_signed_in? %>
+      <p class="m-4">ようこそ<%= current_customer.name %>さん</p>
+        <li class="m-4" style="list-style:none;"><%= link_to 'マイページ' ,  public_customers_mypage_path, :class=>"text-dark" %></li>
+        <li class="m-4" style="list-style:none;"><%= link_to '商品一覧', public_items_path,:class=>"text-dark" %></li>
+        <li class="m-4" style="list-style:none;"><%= link_to 'カート',  public_cart_items_path,:class=>"text-dark" %></li>
+        <li class="m-4" style="list-style:none;"><%= link_to 'LOGOUT', destroy_admin_session_path, method: :delete, :class=>"text-dark" %></li>
+        <% else %>
+        <div class-"customer-sigin-in d-flex mt-2">
+          <li class="m-4" style="list-style:none;"><%= link_to "about", about_path %></li>
+          <li class="m-4" style="list-style:none;"><%= link_to "商品一覧", public_items_path %></li>
+          <li class="m-4" style="list-style:none;"><%= link_to "新規登録",  new_customer_session_path %></li>
+          <li class="m-4" style="list-style:none;"><%= link_to "ログイン",  new_customer_registration_path %></li>
+        </div>
+      <% end %>
+      </div>
+    </header>
     <%= yield %>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>

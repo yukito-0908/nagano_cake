@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="item-title m-4 text-center" style="width:15%;">
+        <h4 class="bg-light">商品一覧</h4>
+      </div>
+        <table class="table">
+          <div class="table-header">
+            <thead>
+              <tr>
+                <th>商品ID</th>
+                <th>商品名</th>
+                <th>税抜価格</th>
+                <th>ジャンル名</th>
+                <th>ステータス</th>
+              </tr>
+            </thead>
+          </div>
+          <div class="table-list">
+            <tbody>
+            <% @items.each do |item| %>
+              <tr>
+                <td><%= item.id %></td>
+                <td><%= item.name %></td>
+                <td><%= item.price %></td>
+                <td><%= item.genre.name %></td>
+                   <% if item.is_active == true %>
+                      <td class="pt-4 pl-2 text-success">販売中</td>
+                    <% else %>
+                      <td class="pt-4 pl-2 text-success">販売停止中</td>
+                    <% end %>
+              </tr>
+                </tbody>
+            <% end %>
+            </div>
+        </table>
+          <%= paginate @items %>
+    </div>
+  </div>
+</div>

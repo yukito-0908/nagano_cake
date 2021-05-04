@@ -1,0 +1,64 @@
+<div class="container">
+  <div class-"row">
+    <div class="col">
+      <div class="order-title　m-4 text-center" style="width:20%;">
+        <p class="bg-light">注文情報入力</p>
+      </div>
+      <%= form_with model: Order.new,url: public_orders_confirm_path, local: true do |f| %>
+        <div class="order-ite">
+          <p class="mx font-weight-bold">支払い方法</p>
+            <div class="ordert-item d-block">
+              <%= f.radio_button :method_of_payment,true %>
+              <%= f.label :method_of_payment, "クレジットカード" %>
+              <%= f.radio_button :method_of_payment,false %>
+              <%= f.label :method_of_payment, "銀行振込" %>
+            </div>
+        </div>
+          <div class="order-list">
+            <div class="order-list-title">
+              <h4>お届け先</h4>
+            </div>
+            <div class="delivery1 m-4">
+              <div class="delivery1-all">
+                <div class="delivery1-title">
+                  <%= f.radio_button :address_option,0 %>ご自身の住所
+                </div>
+                  <div class="delivery1-item">
+                    <%= current_customer.address %>
+                  </div>
+              </div>
+            </div>
+                <div class="delivery2 m-4">
+                  <div class="delivery2-title">
+                   <%= f.radio_button :address_option,1 %>登録済み住所から選択
+                  </div>
+                    <div class="delivery2-list">
+                      <%= f.collection_select(:address_id,@addresses, :id, :full_name) %>
+                    </div>
+                </div>
+                  <div class="delivery3 m-4">
+                    <div class="delivery3-title">
+                      <%= f.radio_button :address_option,2 %>登録済み住所から選択
+                    </div>
+                      <div class="delivery3-list d-flex">
+                        <div class="delivery3-left">
+                          <p>郵便番号(ハイフンなし)</p>
+                          <p>住所</p>
+                          <p>宛先</p>
+                        </div>
+                          <div class="delivery3-item">
+                            <%= f.text_field :delivery_postal_code, :class=> "d-block" %>
+                            <%= f.text_field :delivery_address,:class=> "d-block" %>
+                            <%= f.text_field :delivery_name,:class=> "d-block" %>
+                          </div>
+                      </div>
+                  </div>
+            </div>
+              <div class="order-submit">
+                <%= f.submit "確認画面に進む"%>
+              </div>
+      <% end %>
+        </div>
+    </div>
+  </div>
+</div>

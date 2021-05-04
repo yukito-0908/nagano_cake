@@ -1,0 +1,62 @@
+ <div class="container">
+   <div class="row">
+     <div class="col  mx-auto w-75">
+       <div class="customer-title">
+        <h4 class="bg-light text-center m-4" style="width:20%;">新規会員登録</h4>
+       </div>
+        <%= form_for (@customer),url:  customer_registration_path  do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="customer-list d-flex">
+              <div class="customer-left">
+                <div class="customer-item">
+                  <p>名前</p>
+                  <p>フリガナ</p>
+                  <p>メールアドレス</p>
+                  <p>郵便便番号(ハイフンなし)</p>
+                  <p>住所</p>
+                  <p>電話番号(ハイフンなし)</p>
+                  <p>パスワード(6文字以上)</p>
+                  <p>パスワード(確認用)</p>
+                </div>
+              </div>
+                <div class="customer-right pl-4">
+                  <div class="customer-name d-flex p-1">
+                    (姓)　<%= f.text_field :last_name %>
+                    (名)　<%= f.text_field :first_name %>
+                  </div>
+                    <div class="customer-name2 d-flex p-1">
+                      (セイ) <%= f.text_field :last_name_kana %>
+                      (メイ) <%= f.text_field :first_name_kana %>
+                    </div>
+                  <div class="customer-email p-1">
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                  </div>
+                    <div class="customer-postal_code p-1">
+                      <%= f.text_field :postal_code %>
+                    </div>
+                      <div class="customer-street-address p-1">
+                        <%= f.text_field :address %>
+                      </div>
+                        <div class="customer-phone p-1">
+                          <%= f.telephone_field :telephone_number %>
+                        </div>
+                          <div class="customer-password p-1">
+                            <% if @minimum_password_length %>
+                            <% end %>
+                            <%= f.password_field :password, autocomplete: "new-password" %>
+                          </div>
+                            <div class="customer-password2 p-1">
+                              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+                            </div>
+                              <div class="actions mt-3">
+                                <%= f.submit "新規登録",:class=>"bg-success text-white border border-light",:style=>"padding-right:50px; padding-left:50px;" %>
+                              </div>
+                  </div>
+              </div>
+            <% end %>
+              <div class="customer-login">
+                <h4 class="bg-light w-25 m-4  text-center">既に登録済みの方</h4>
+                <p class="m-2"><%= link_to "こちら", new_customer_session_path,:class=>"m-2" %> からログインしてください</p>
+              </div>
+  </div>
+</div>
